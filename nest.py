@@ -110,10 +110,17 @@ class Nest:
              print k + "."*(32-len(k)) + ":", allvars[k]
 
     def show_curtemp(self):
+        print "%0.1f" % self.get_curtemp()
+
+    def get_curtemp(self):
         temp = self.status["shared"][self.serial]["current_temperature"]
         temp = self.temp_out(temp)
-
-        print "%0.1f" % temp
+        return temp
+ 
+    def get_targettemp(self):
+        temp = self.status["shared"][self.serial]["target_temperature"]
+        temp = self.temp_out(temp)
+        return temp
 
     def set_temperature(self, temp):
         temp = self.temp_in(temp)
